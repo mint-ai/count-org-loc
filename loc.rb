@@ -39,6 +39,8 @@ rescue StandardError
 end
 puts "Found #{repos.count} repos. Counting..."
 
+repos.reject! { |repo| repo.archived || %w[count-org-loc].include?(repo.name) }
+
 reports = []
 repos.each do |repo|
   puts "Counting #{repo.name}..."
